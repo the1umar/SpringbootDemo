@@ -1,11 +1,24 @@
 package com.example.demo.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Student {
-
+    @Id
+    @SequenceGenerator (
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
+    private Long id; // the field that the above annotations is attached to (hence primary key)
     private String email;
-    private Long id;
     private String name;
     private Integer age;
     private LocalDate dob;
