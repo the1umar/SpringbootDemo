@@ -9,10 +9,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+// HTTP/API layer
 // this class will include support for our API (for students)
-
-// API layer
-
 // This class listens for browser/client requests
 @RestController // Essentially signifying “This class handles HTTP requests”
 @RequestMapping(path = "/api/v1/student") // base URL for this controller

@@ -7,11 +7,13 @@ import java.time.LocalDate;
 @Entity
 @Table
 public class Student {
-    @Id
-    @SequenceGenerator (
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
+    // Delegate identity (id) creation in the database
+
+    @Id // indicated primary key
+    @SequenceGenerator ( // defines how ID's are created.
+            name = "student_sequence", // internal Hibernate (ORM) name
+            sequenceName = "student_sequence", // actual database sequence name
+            allocationSize = 1 // how many IDs hibernate grabs at once
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
