@@ -5,9 +5,15 @@ package com.example.demo.student;
 // This layer exists to separate the data we want from how the database works
 // Can later change the database (PSQL) or the ORM (Hibernate) without having to change the controller or services
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
+
+    // in sql: SELECT * FROM student WHERE email = ?
+    Optional<Student> findStudentByEmail(String email);
 
 }

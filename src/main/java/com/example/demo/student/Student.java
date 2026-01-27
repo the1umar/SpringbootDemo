@@ -1,8 +1,9 @@
 package com.example.demo.student;
 
-import jakarta.persistence.*;
+import jakarta.persistence.*; // always use persistence so if we change hibernate everything still follows
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -22,24 +23,16 @@ public class Student {
     private Long id; // the field that the above annotations is attached to (hence primary key)
     private String email;
     private String name;
+    @Transient // meaning age doesn't have to be ea column (will be auto calculated)
     private Integer age;
     private LocalDate dob;
 
     public Student () {
     }
 
-    public Student(String email, Long id, String name, Integer age, LocalDate dob) {
-        this.email = email;
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.dob = dob;
-    }
-
-    public Student (String email, String name, Integer age, LocalDate dob) {
+    public Student (String email, String name, LocalDate dob) {
         this.email = email;
         this.name = name;
-        this.age = age;
         this.dob = dob;
     }
 
@@ -76,7 +69,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {

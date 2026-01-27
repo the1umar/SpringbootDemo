@@ -8,23 +8,23 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-@Configuration
+@Configuration // "this class configures something"
 public class StudentConfig {
 
-    @Bean
+    @Bean // creates a spring-managed component
     CommandLineRunner commandLineRunner(StudentRepository repository) {
+        // This code runs ONCE when app starts
+        // Creates and saves students
         return args -> {
             Student mariam = new Student (
                     "mariam.jamal@gmail.com",
                     "Mariam",
-                    21,
                     LocalDate.of(2000, Month.JANUARY, 5)
             );
 
             Student alex = new Student (
                     "alex@gmail.com",
                     "Alex",
-                    21,
                     LocalDate.of(2004, Month.JANUARY, 5)
             );
 
